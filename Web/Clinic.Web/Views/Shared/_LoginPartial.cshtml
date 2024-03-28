@@ -16,6 +16,18 @@
                 <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
             </li>
         }
+        if (this.User.IsInRole(GlobalConstants.ClinicDoctortRoleName))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Doctor" asp-controller="Dashboard" asp-action="Index" title="Doctor">Doctor Dashboard</a>
+            </li>
+        }
+        if (this.User.IsInRole(GlobalConstants.ClinicPatientRoleName))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Patient" asp-controller="Dashboard" asp-action="Index" title="Patient">Your Dashboard</a>
+            </li>
+        }
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@this.Url.Action("Index", "Home", new { area = string.Empty })">
                 <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
