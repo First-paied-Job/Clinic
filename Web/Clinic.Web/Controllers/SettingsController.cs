@@ -5,7 +5,7 @@
 
     using Clinic.Data.Common.Repositories;
     using Clinic.Data.Models;
-    using Clinic.Services.Data;
+    using Clinic.Services.Data.Contracts;
     using Clinic.Web.ViewModels.Settings;
 
     using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-﻿namespace Clinic.Services.Data
+﻿namespace Clinic.Services.Data.Contracts
 {
     using System.Collections.Generic;
 

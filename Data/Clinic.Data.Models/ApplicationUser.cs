@@ -16,7 +16,10 @@ namespace Clinic.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.PatientDiagnostics = new HashSet<PatientDiagnostics>();
         }
+
+        public string Name { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }
@@ -37,5 +40,7 @@ namespace Clinic.Data.Models
         public virtual Clinic Clinic { get; set; }
 
         public string ClinicId { get; set; }
+
+        public virtual ICollection<PatientDiagnostics> PatientDiagnostics { get; set; }
     }
 }

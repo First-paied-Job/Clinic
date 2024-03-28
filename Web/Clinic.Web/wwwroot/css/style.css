@@ -1448,7 +1448,9 @@ select.form-control:not([size]):not([multiple]){
 	color: #ffffff;
 }
 
-
+.error-message {
+	color: red;
+}
 
 
 

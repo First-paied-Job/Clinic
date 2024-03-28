@@ -21,6 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Clinic.Data.Common\Clinic.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\Clinic.Data.Models\Clinic.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\Clinic.Data\Clinic.Data.csproj" />
+    <ProjectReference Include="..\..\Web\Clinic.Web.ViewModels\Clinic.Web.ViewModels.csproj" />
     <ProjectReference Include="..\Clinic.Services.Mapping\Clinic.Services.Mapping.csproj" />
   </ItemGroup>
 

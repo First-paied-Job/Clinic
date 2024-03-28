@@ -5,6 +5,7 @@
 
     using Clinic.Data.Common.Repositories;
     using Clinic.Data.Models;
+    using Clinic.Services.Data.Contracts;
     using Clinic.Services.Mapping;
 
     public class SettingsService : ISettingsService

@@ -4,4 +4,20 @@
 }
 
 <h1>@this.ViewData["Title"]</h1>
-Settings: @this.Model.SettingsCount
+﻿<div class="row">
+    <div class="jumbotron col-md-12">
+        <div class="heading-container bottom-buffer-md">
+            <h1>This is the admin panel for MediLab!</h1>
+        </div>
+
+        <h2> Add a new doctor -</h2>
+        <div class="button-holder">
+            <a href="/Administration/Dashboard/AddDoctor" class="btn btn-info text-uppercase">Add Doctor</a>
+        </div>
+
+        <div class="button-holder">
+            <a href="/Administration/Dashboard/List" class="btn btn-info text-uppercase">Doctors List</a>
+        </div>
+    </div>
+</div>
+

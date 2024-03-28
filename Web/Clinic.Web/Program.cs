@@ -9,6 +9,7 @@
     using Clinic.Data.Repositories;
     using Clinic.Data.Seeding;
     using Clinic.Services.Data;
+    using Clinic.Services.Data.Contracts;
     using Clinic.Services.Mapping;
     using Clinic.Services.Messaging;
     using Clinic.Web.ViewModels;
@@ -65,6 +66,8 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<IAdministratorService, AdministratorService>();
+            services.AddTransient<IDoctorService, DoctorService>();
         }
 
         private static void Configure(WebApplication app)

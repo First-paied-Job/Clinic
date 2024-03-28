@@ -1,0 +1,14 @@
+﻿﻿@using Clinic.Web.ViewModels.Doctor.Dashboard;
+
+<main class="mt-3">
+    <h1 class="text-center suls-text-color">Current patients</h1>
+    @foreach (PatientViewModel patient in Model)
+    {
+        <div>
+            <p>@patient.Email - @patient.Name</p>
+            <div>
+                <a href="/Doctor/Dashboard/RemovePatient?userId=@patient.PatientId" class="btn forum-go-back-btn text-uppercase">Remove Patient's role</a>
+            </div>
+        </div>
+    }
+</main>

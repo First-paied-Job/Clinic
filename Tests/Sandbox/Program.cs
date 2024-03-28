@@ -12,6 +12,7 @@
     using Clinic.Data.Repositories;
     using Clinic.Data.Seeding;
     using Clinic.Services.Data;
+    using Clinic.Services.Data.Contracts;
     using Clinic.Services.Messaging;
 
     using CommandLine;

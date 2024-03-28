@@ -44,4 +44,15 @@
   <ItemGroup>
     <Folder Include="Areas\Patient\Views - Copy\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Doctor\Views\Dashboard\AddPatient.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Doctor\Views\Dashboard\List.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
