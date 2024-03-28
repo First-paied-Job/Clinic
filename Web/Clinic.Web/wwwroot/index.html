@@ -1,60 +1,3 @@
-﻿@using Clinic.Common
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
-    
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @this.RenderBody()
-        </main>
-    </div>
-    
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
-    <script src="~/js/site.min.js" asp-append-version="true"></script>
-    @await this.RenderSectionAsync("Scripts", required: false)
-</body>-->
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -113,7 +56,7 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="wel-nots">
-						<p>Welcome to Our MEDI Lab!</p>
+						<p>Welcome to Our Health Lab!</p>
 					</div>
 					<div class="right-top">
 						<ul>
@@ -133,7 +76,7 @@
 	<header class="top-header">
 		<nav class="navbar header-nav navbar-expand-lg">
             <div class="container">
-				<a class="navbar-brand" href="index.html"><img src="images/logo1.png" alt="image"></a>
+				<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="image"></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
 					<span></span>
 					<span></span>
@@ -164,8 +107,8 @@
 					<div class="pogoSlider-slide" data-transition="fade" data-duration="1500" style="background-image:url(images/slider-01.jpg);">
 						<div class="lbox-caption pogoSlider-slide-element">
 							<div class="lbox-details">
-								<h1>Welcome to MEDI Lab</h1>
-								<p>The best clinical tests for your health </p>
+								<h1>Welcome to Health Lab</h1>
+								<p>Fusce convallis ante id purus sagittis malesuada. Sed erat ipsum </p>
 								<a href="#" class="btn">Contact Us</a>
 							</div>
 						</div>
@@ -174,10 +117,20 @@
 						<div class="lbox-caption pogoSlider-slide-element">
 							<div class="lbox-details">
 								<h1>We are Expert in The Field of Health Lab</h1>
-								<p>We can provide you with 100% correct test</p>
+								<p>Fusce convallis ante id purus sagittis malesuada. Sed erat ipsum</p>
 								<a href="#appointment" class="btn">Appointment</a>
 							</div>
 						</div>
+					</div>
+					<div class="pogoSlider-slide" data-transition="fade" data-duration="1500" style="background-image:url(images/slider-03.jpg);">
+						<div class="lbox-caption pogoSlider-slide-element">
+							<div class="lbox-details">
+								<h1>Welcome to Health Lab</h1>
+								<p>Fusce convallis ante id purus sagittis malesuada. Sed erat ipsum </p>
+								<a href="#" class="btn">Contact Us</a>
+							</div>
+						</div>
+						
 					</div>
 				</div><!-- .pogoSlider -->
 			</div>
@@ -193,7 +146,7 @@
 					<div class="col-lg-12">
 						<div class="title-box">
 							<h2>About Us</h2>
-							<br />
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
 						</div>
 					</div>
 				</div>
@@ -201,9 +154,10 @@
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<div class="row align-items-center about-main-info">
 							<div class="col-lg-6 col-md-6 col-sm-12">
-								<h2> Welcome to MEDI Lab </h2>
-								<p>Welcome to our state-of-the-art Health Lab, where innovation meets care. Our facility is dedicated to pioneering research, diagnostics, and wellness solutions, offering cutting-edge technology alongside compassionate expertise. From advanced screenings to personalized treatment plans, we're committed to optimizing health outcomes and empowering individuals on their journey to wellness. Step into our lab and embark on a path to a healthier tomorrow. </p>
-								<!--<a href="#" class="new-btn-d br-2">Read More</a>-->
+								<h2> Welcome to Health Lab </h2>
+								<p>Fusce convallis ante id purus sagittis malesuada. Sed erat ipsum, suscipit sit amet auctor quis, vehicula ut leo. Maecenas felis nulla, tincidunt ac blandit a, consectetur quis elit. Nulla ut magna eu purus cursus sagittis. Praesent fermentum tincidunt varius. Proin sit amet tempus magna. Fusce pellentesque vulputate urna. </p>
+								<p>Fusce convallis ante id purus sagittis malesuada. Sed erat ipsum, suscipit sit amet auctor quis, vehicula ut leo. Maecenas felis nulla, tincidunt ac blandit a, consectetur quis elit. Nulla ut magna eu purus cursus sagittis. Praesent fermentum tincidunt varius. Proin sit amet tempus magna. Fusce pellentesque vulputate urna. </p>
+								<a href="#" class="new-btn-d br-2">Read More</a>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-12">
 								<div class="about-m">
@@ -235,7 +189,7 @@
 				<div class="col-lg-12">
 					<div class="title-box">
 						<h2>Services</h2>
-						<p>Services that can be find in MEDI Lab </p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
 					</div>
 				</div>
 			</div>
@@ -246,9 +200,9 @@
 						<div class="item">
 							<div class="serviceBox">
 								<div class="service-icon"><i class="fa fa-h-square" aria-hidden="true"></i></div>
-								<h3 class="title">Diagnostic Testing:</h3>
+								<h3 class="title">Lorem ipsum dolor</h3>
 								<p class="description">
-									Comprehensive diagnostic tests for various health conditions including blood tests, imaging (X-rays, MRI, CT scans), genetic testing, and pathology services.
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequuntur.
 								</p>
 								<a href="#" class="new-btn-d br-2">Read More</a>
 							</div>
@@ -256,9 +210,9 @@
 						<div class="item">
 							<div class="serviceBox">
 								<div class="service-icon"><i class="fa fa-heart" aria-hidden="true"></i></div>
-								<h3 class="title">Health Screenings:</h3>
+								<h3 class="title">Lorem ipsum dolor</h3>
 								<p class="description">
-									Regular health screenings for early detection of diseases such as diabetes, hypertension, cholesterol levels, and cancer screenings.
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequuntur.
 								</p>
 								<a href="#" class="new-btn-d br-2">Read More</a>
 							</div>
@@ -266,9 +220,9 @@
 						<div class="item">
 							<div class="serviceBox">
 								<div class="service-icon"><i class="fa fa-hospital-o" aria-hidden="true"></i></div>
-								<h3 class="title">Nutritional Counseling:</h3>
+								<h3 class="title">Lorem ipsum dolor</h3>
 								<p class="description">
-									Personalized nutrition plans and counseling sessions to promote healthy eating habits and manage weight effectively.
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequuntur.
 								</p>
 								<a href="#" class="new-btn-d br-2">Read More</a>
 							</div>
@@ -276,9 +230,9 @@
 						<div class="item">
 							<div class="serviceBox">
 								<div class="service-icon"><i class="fa fa-stethoscope" aria-hidden="true"></i></div>
-								<h3 class="title">Wellness Programs:</h3>
+								<h3 class="title">Lorem ipsum dolor</h3>
 								<p class="description">
-									Customized wellness programs focusing on stress management, mindfulness techniques, and lifestyle modifications to enhance overall well-being.
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequuntur.
 								</p>
 								<a href="#" class="new-btn-d br-2">Read More</a>
 							</div>
@@ -286,9 +240,9 @@
 						<div class="item">
 							<div class="serviceBox">
 								<div class="service-icon"><i class="fa fa-wheelchair" aria-hidden="true"></i></div>
-								<h3 class="title">Chronic Disease Management:</h3>
+								<h3 class="title">Lorem ipsum dolor</h3>
 								<p class="description">
-									Specialized care and support for chronic conditions such as diabetes, cardiovascular diseases, asthma, and arthritis, including medication management and lifestyle interventions.
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequuntur.
 								</p>
 								<a href="#" class="new-btn-d br-2">Read More</a>
 							</div>
@@ -296,9 +250,9 @@
 						<div class="item">
 							<div class="serviceBox">
 								<div class="service-icon"><i class="fa fa-plus-square" aria-hidden="true"></i></div>
-								<h3 class="title">Rehabilitation Services:</h3>
+								<h3 class="title">Lorem ipsum dolor</h3>
 								<p class="description">
-									Physical therapy, occupational therapy, and speech therapy services for individuals recovering from injuries, surgeries, or neurological conditions.
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequuntur.
 								</p>
 								<a href="#" class="new-btn-d br-2">Read More</a>
 							</div>
@@ -306,9 +260,9 @@
 						<div class="item"> 
 							<div class="serviceBox">
 								<div class="service-icon"><i class="fa fa-medkit" aria-hidden="true"></i></div>
-								<h3 class="title">Fitness Assessments:</h3>
+								<h3 class="title">Lorem ipsum dolor</h3>
 								<p class="description">
-									Evaluation of physical fitness levels, body composition analysis, and tailored exercise programs to improve overall fitness and prevent chronic diseases.
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequuntur.
 								</p>
 								<a href="#" class="new-btn-d br-2">Read More</a>
 							</div>
@@ -316,9 +270,9 @@
 						<div class="item">
 							<div class="serviceBox">
 								<div class="service-icon"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-								<h3 class="title">Clinical Trials:</h3>
+								<h3 class="title">Lorem ipsum dolor</h3>
 								<p class="description">
-									Participation in clinical research studies and trials investigating new treatments, medications, and medical devices for various health conditions.
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequuntur.
 								</p>
 								<a href="#" class="new-btn-d br-2">Read More</a>
 							</div>
@@ -326,9 +280,9 @@
 						<div class="item">
 							<div class="serviceBox">
 								<div class="service-icon"><i class="fa fa-ambulance" aria-hidden="true"></i></div>
-								<h3 class="title">Mental Health Support:</h3>
+								<h3 class="title">Lorem ipsum dolor</h3>
 								<p class="description">
-									Counseling services, therapy sessions, and support groups for individuals dealing with mental health disorders such as depression, anxiety, and PTSD.
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequuntur.
 								</p>
 								<a href="#" class="new-btn-d br-2">Read More</a>
 							</div>
@@ -838,5 +792,4 @@
 	<script src="js/images-loded.min.js"></script>	
     <script src="js/custom.js"></script>
 </body>
-</html>
 </html>
