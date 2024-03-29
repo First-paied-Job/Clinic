@@ -11,7 +11,34 @@
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
+
+    <header class="top-header">
+        <nav class="navbar header-nav navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="/"><img src="images/logo1.png" alt="image"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link active" href="/#home">Home</a></li>
+                        <li><a class="nav-link" href="/#about">About Us</a></li>
+                        <li><a class="nav-link" href="/#services">Services</a></li>
+                        <li><a class="nav-link" href="/#appointment">Appointment</a></li>
+                        <li><a class="nav-link" href="/#team">Doctor</a></li>
+                        <li><a class="nav-link" href="/#contact">Contact</a></li>
+                        <!--<li><a class="nav-link" href="#register">Register</a></li>
+                        <li><a class="nav-link" href="#login">Login</a></li> -->
+                        <partial name="_LoginPartial" />
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+  <!--  <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
@@ -20,7 +47,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                   <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -30,12 +57,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                    </ul>
+                    </ul> 
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
-    </header>
+    </header> -->
     
     <div class="container">
         <partial name="_CookieConsentPartial" />
