@@ -1,15 +1,18 @@
-﻿using Clinic.Data;
-using Clinic.Services.Data.Contracts;
-using System.Linq;
-using System;
-using System.Threading.Tasks;
-using Clinic.Common;
-using System.Collections.Generic;
-using Clinic.Web.ViewModels.Administration.Dashboard;
-using Microsoft.EntityFrameworkCore;
-
-namespace Clinic.Services.Data
+﻿namespace Clinic.Services.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Clinic.Common;
+    using Clinic.Data;
+    using Clinic.Data.Models.Hospital;
+    using Clinic.Services.Data.Contracts;
+    using Clinic.Web.ViewModels.Administration.Dashboard;
+    using Clinic.Web.ViewModels.Administration.Dashboard.Hospital;
+    using Microsoft.EntityFrameworkCore;
+
     public class AdministratorService : IAdministratorService
     {
         private readonly ApplicationDbContext db;
@@ -49,6 +52,25 @@ namespace Clinic.Services.Data
             await this.db.SaveChangesAsync();
         }
 
+        public async Task AddHospitalAsync(HospitalInputModel input)
+        {
+            var check = await this.db.Hospitals.FirstOrDefaultAsync(h => h.Name == input.Name);
+
+            if (check != null)
+            {
+                throw new ArgumentException("There is already a Hospital with this name!");
+            }
+
+            var hospital = new Hospital
+            {
+                Name = input.Name,
+            };
+
+            await this.db.Hospitals.AddAsync(hospital);
+
+            await this.db.SaveChangesAsync();
+        }
+
         public async Task<ICollection<DoctorViewModel>> GetDoctorsAsync()
         {
             var viewModel = new List<DoctorViewModel>();
@@ -70,6 +92,24 @@ namespace Clinic.Services.Data
             }
 
             return viewModel;
+        }
+
+        public async Task<ICollection<HospitalViewModel>> GetHospitalsAsync()
+        {
+            var hospitals = await this.db.Hospitals
+                .Select(h => new HospitalViewModel
+                {
+                    HospitalId = h.HospitalId,
+                    Name = h.Name,
+                    Clinics = h.Clincs.Select(c => new ClinicDTO
+                    {
+                        ClinicId = c.ClinicId,
+                        Name = c.Name,
+                    }).ToList(),
+                })
+                .ToListAsync();
+
+            return hospitals;
         }
 
         public async Task RemoveDoctorRoleFromUser(string userId)
@@ -100,6 +140,55 @@ namespace Clinic.Services.Data
             });
 
             await this.db.SaveChangesAsync();
+        }
+
+        public async Task RemoveHospitalAsync(string hospitalId)
+        {
+            var hospital = await this.db.Hospitals.FirstOrDefaultAsync(h => h.HospitalId == hospitalId);
+
+            if (hospital == null)
+            {
+                throw new ArgumentException("This hospital does not exist!");
+            }
+
+            this.db.Hospitals.Remove(hospital);
+
+            await this.db.SaveChangesAsync();
+        }
+
+        public async Task EditHospitalAsync(EditHospitalInputModel input)
+        {
+            if (input == null)
+            {
+                throw new ArgumentNullException("input", "The given input is null!");
+            }
+
+            var hospital = await this.db.Hospitals.FirstOrDefaultAsync(h => h.HospitalId == input.HospitalId);
+
+            if (hospital == null)
+            {
+                throw new InvalidOperationException("No hospital found with this id!");
+            }
+
+            hospital.Name = input.Name;
+
+            await this.db.SaveChangesAsync();
+        }
+
+        public async Task<EditHospitalViewModel> GetHospitalEdit(string id)
+        {
+            var hospitalDb = await this.db.Hospitals.FirstOrDefaultAsync(h => h.HospitalId == id);
+
+            if (hospitalDb == null)
+            {
+                throw new ArgumentNullException("hospitalId", "No hospital found with this id!");
+            }
+
+            return new EditHospitalViewModel()
+            {
+               HospitalId = hospitalDb.HospitalId,
+               Name = hospitalDb.Name,
+            };
         }
     }
 }

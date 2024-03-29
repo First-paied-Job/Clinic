@@ -1,0 +1,37 @@
+﻿﻿@using Clinic.Web.ViewModels.Administration.Dashboard.Hospital;
+
+@model ICollection<HospitalViewModel>
+
+<main class="mt-3">
+    @if (Model.Count == 0)
+    {
+        <h1 class="text-center suls-text-color">There are no hospitals at the moment!</h1>
+    }
+    else
+    {
+        <h1 class="text-center suls-text-color">Current Hospitals</h1>
+        @foreach (HospitalViewModel hospital in Model)
+        {
+            <div>
+                <p>Hospital Name - @hospital.Name</p>
+                @if (hospital.Clinics.Count > 0)
+                {
+                    <div>
+                        <h3>Clinics in this Hopsital: </h3>
+                        @foreach (ClinicDTO clinic in hospital.Clinics)
+                        {
+                            <p>@clinic.Name</p>
+                        }
+                    </div>
+                }
+                <div>
+                    <a href="/Administration/Dashboard/RemoveHospital?hospitalId=@hospital.HospitalId" class="btn forum-go-back-btn text-uppercase">Remove Hospital</a>
+                </div>
+                <div>
+                    <a href="/Administration/Dashboard/EditHospital?hospitalId=@hospital.HospitalId" class="btn forum-go-back-btn text-uppercase">Edit Hospital</a>
+                </div>
+            </div>
+        }
+    }
+    
+</main>
