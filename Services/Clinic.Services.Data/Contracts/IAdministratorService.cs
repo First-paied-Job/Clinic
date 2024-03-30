@@ -39,6 +39,9 @@
 
         public Task<EditClinicViewModel> GetClinicEdit(string id);
 
+        public Task AddDoctorToClinic(AddDoctorToClinicInput input);
+
+        public Task RemoveDoctorFromClinic(string doctorId);
         // Справки за служители, клиенти, изследвания.
     }
 }

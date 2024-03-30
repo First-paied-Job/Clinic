@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Numerics;
     using System.Threading.Tasks;
 
     using Clinic.Common;
@@ -102,6 +103,14 @@
                 throw new InvalidOperationException($"There is no role with the name \"{GlobalConstants.ClinicDoctortRoleName}\"!");
             }
 
+            var clinic = await this.db.Clincs
+                .Include(c => c.People)
+                .FirstOrDefaultAsync(c => c.ClinicId == user.ClinicId);
+
+            user.ClinicId = null;
+            user.Clinic = null;
+            clinic.People.Remove(user);
+
             this.db.UserRoles.Remove(new Microsoft.AspNetCore.Identity.IdentityUserRole<string>()
             {
                 RoleId = doctorRole.Id,
@@ -151,7 +160,7 @@
 
         public async Task RemoveHospitalAsync(string hospitalId)
         {
-            var hospital = await this.db.Hospitals.OrderBy(h => h.Name).Include(h => h.Clincs).FirstOrDefaultAsync(h => h.HospitalId == hospitalId);
+            var hospital = await this.db.Hospitals.Include(h => h.Clincs).ThenInclude(c => c.People).FirstOrDefaultAsync(h => h.HospitalId == hospitalId);
 
             if (hospital == null)
             {
@@ -229,32 +238,32 @@
         public async Task<ICollection<ClinicViewModel>> GetClinicsInHospitalAsync(string hospitalId)
         {
             var hospital = await this.db.Hospitals
+                .Include(h => h.Clincs)
+                .ThenInclude(c => c.People)
                 .FirstOrDefaultAsync(h => h.HospitalId == hospitalId);
-
-            var doctorRole = await this.db.Roles.FirstOrDefaultAsync(r => r.Name == GlobalConstants.ClinicDoctortRoleName);
-            var doctors = await (
-                from userroles in this.db.UserRoles
-                join user in this.db.Users on userroles.UserId equals user.Id
-                where userroles.RoleId == doctorRole.Id
-                select new DoctorDTO
-                {
-                    DoctorId = user.Id,
-                    Name = user.Email,
-                }).ToListAsync();
 
             var clinics = hospital.Clincs
                 .Select(c => new ClinicViewModel
                 {
+                    HospitalId = hospital.HospitalId,
                     ClinicId = c.ClinicId,
                     Name = c.Name,
-                    Doctors = doctors,
+                    Doctors = c.People
+                        .Where(p => p.ClinicId == c.ClinicId)
+                        .Select(p => new DoctorDTO
+                        {
+                            ClinicId = p.ClinicId,
+                            DoctorId = p.Id,
+                            Name = p.Email,
+                        })
+                        .ToList(),
                 }).ToList();
             return clinics;
         }
 
         public async Task RemoveClinicAsync(string clinicId)
         {
-            var clinic = await this.db.Clincs.FirstOrDefaultAsync(h => h.ClinicId == clinicId);
+            var clinic = await this.db.Clincs.Include(c => c.People).FirstOrDefaultAsync(h => h.ClinicId == clinicId);
             if (clinic == null)
             {
                 throw new ArgumentException("This hospital does not exist!");
@@ -299,7 +308,68 @@
             {
                 ClinicId = clinicDb.ClinicId,
                 Name = clinicDb.Name,
+                HospitalId = clinicDb.HospitalEmployerId,
             };
+        }
+
+        public async Task AddDoctorToClinic(AddDoctorToClinicInput input)
+        {
+            var doctor = await this.db.Users.FirstOrDefaultAsync(u => u.Email == input.Email);
+
+            if (doctor == null)
+            {
+                throw new ArgumentException("The given person is not in our system.");
+            }
+
+            var doctorRole = await this.db.Roles.FirstOrDefaultAsync(r => r.Name == GlobalConstants.ClinicDoctortRoleName);
+
+            var checkIfDoctor = await this.db.UserRoles.FirstOrDefaultAsync(ur => ur.UserId == doctor.Id && ur.RoleId == doctorRole.Id);
+
+            if (checkIfDoctor == null)
+            {
+                throw new ArgumentException("The given person is not a doctor.");
+            }
+
+            if (doctor.ClinicId != null)
+            {
+                throw new ArgumentException("The given doctor already is in another clinic.");
+            }
+
+            var clinic = await this.db.Clincs.FirstOrDefaultAsync(c => c.ClinicId == input.ClinicId);
+
+            if (clinic == null)
+            {
+                throw new ArgumentException("The given clinic does not exist.");
+            }
+
+            clinic.People.Add(doctor);
+            doctor.Clinic = clinic;
+            doctor.ClinicId = clinic.ClinicId;
+            await this.db.SaveChangesAsync();
+        }
+
+        public async Task RemoveDoctorFromClinic(string doctorId)
+        {
+            var doctor = await this.db.Users.FirstOrDefaultAsync(u => u.Id == doctorId);
+
+            if (doctor == null)
+            {
+                throw new ArgumentException("This doctor does not exist!");
+            }
+
+            var clinic = await this.db.Clincs
+                .Include(c => c.People)
+                .FirstOrDefaultAsync(c => c.ClinicId == doctor.ClinicId);
+
+            if (clinic == null)
+            {
+                throw new ArgumentException("This doctor is not in this clinic!");
+            }
+
+            doctor.ClinicId = null;
+            doctor.Clinic = null;
+            clinic.People.Remove(doctor);
+            await this.db.SaveChangesAsync();
         }
     }
 }

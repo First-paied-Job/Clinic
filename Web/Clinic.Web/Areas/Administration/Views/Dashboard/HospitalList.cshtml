@@ -17,17 +17,7 @@
                 @if (hospital.Clinics.Count > 0)
                 {
                     <div>
-                        <h3>Clinics in this Hopsital: </h3>
-                        @foreach (ClinicDTO clinic in hospital.Clinics)
-                        {
-                            <p>@clinic.Name</p>
-                            <div>
-                                <a href="/Administration/Dashboard/RemoveClinic?clinicId=@clinic.ClinicId" class="btn forum-go-back-btn text-uppercase">Remove Clinic</a>
-                            </div>
-                            <div>
-                                <a href="/Administration/Dashboard/EditClinic?clinicId=@clinic.ClinicId" class="btn forum-go-back-btn text-uppercase">Edit Clinic</a>
-                            </div>
-                        }
+                        <a href="/Administration/Dashboard/ClinicList?hospitalId=@hospital.HospitalId" class="btn forum-go-back-btn text-uppercase">View Clinics</a>
                     </div>
                     <div>
                         <a href="/Administration/Dashboard/AddClinic?hospitalId=@hospital.HospitalId" class="btn forum-go-back-btn text-uppercase">Add a clinic to the hospital!</a>

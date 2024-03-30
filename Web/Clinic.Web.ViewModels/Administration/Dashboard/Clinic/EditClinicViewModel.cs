@@ -5,5 +5,7 @@
         public string Name { get; set; }
 
         public string ClinicId { get; set; }
+
+        public string HospitalId { get; set; }
     }
 }

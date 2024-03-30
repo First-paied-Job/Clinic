@@ -178,6 +178,39 @@
         {
             await this.administratorService.EditClinicAsync(input);
 
+            return this.Redirect($"/Administration/Dashboard/ClinicList?hospitalId={input.HospitalId}");
+        }
+
+        public IActionResult AddDoctorToClinic(string clinicId)
+        {
+            this.ViewBag.clinicId = clinicId;
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddDoctorToClinicPost(AddDoctorToClinicInput input)
+        {
+            try
+            {
+                await this.administratorService.AddDoctorToClinic(input);
+            }
+            catch (System.Exception e)
+            {
+                this.ModelState.AddModelError("noClinic", e.Message);
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View("AddDoctorToClinic", input);
+            }
+
+            return this.Redirect("/Administration/Dashboard/HospitalList");
+        }
+
+        public async Task<IActionResult> RemoveDoctorFromClinic(string doctorId)
+        {
+            await this.administratorService.RemoveDoctorFromClinic(doctorId);
+
             return this.Redirect("/Administration/Dashboard/HospitalList");
         }
     }

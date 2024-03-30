@@ -2,16 +2,12 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class EditClinicInputModel
+    public class AddDoctorToClinicInput
     {
         [Required]
-        [MinLength(2)]
-        public string Name { get; set; }
+        public string Email { get; set; }
 
         [Required]
         public string ClinicId { get; set; }
-
-        [Required]
-        public string HospitalId { get; set; }
     }
 }

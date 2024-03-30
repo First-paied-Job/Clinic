@@ -4,6 +4,8 @@
 
     public class ClinicViewModel
     {
+        public string HospitalId { get; set; }
+
         public string ClinicId { get; set; }
 
         public string Name { get; set; }

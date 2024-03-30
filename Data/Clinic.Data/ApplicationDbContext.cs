@@ -81,7 +81,7 @@
             foreach (var foreignKey in foreignKeys)
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
-            } 
+            }
 
             builder
                 .Entity<Hospital>()
@@ -89,6 +89,13 @@
                 .WithOne(c => c.HospitalEmployer)
                 .HasForeignKey(c => c.HospitalEmployerId)
                 .OnDelete(DeleteBehavior.ClientCascade);
+
+            builder
+                .Entity<Clinic>()
+                .HasMany(c => c.People)
+                .WithOne(c => c.Clinic)
+                .HasForeignKey(c => c.ClinicId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.Entity<PatientDiagnostics>().HasKey(x => new { x.PatientId, x.DiagnosticsId });
             base.OnModelCreating(builder);
