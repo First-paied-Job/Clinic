@@ -9,26 +9,54 @@
         <div class="heading-container bottom-buffer-md">
             <h1>This is the admin panel for MediLab!</h1>
         </div>
-
+        <br />
         <div>
-            <h2> Add a new doctor -</h2>
-            <div class="button-holder">
-                <a href="/Administration/Dashboard/AddDoctor" class="btn btn-info text-uppercase">Add Doctor</a>
+            <h2> Add a new doctor: </h2>
+            <div class="submit-button ">
+                <a href="/Administration/Dashboard/AddDoctor">
+                    <button class="btn btn-common" id="submit" type="submit">Add Doctor</button>
+                <div id="msgSubmit" class="h3 text-center hidden"></div>
+               <!-- <a href="/Administration/Dashboard/AddDoctor" class="btn btn-info text-uppercase">Add Doctor</a  -->
+                <div class="clearfix"></div>
+                </a>
             </div>
-
-            <div class="button-holder">
+            <br />
+          <!--  <div class="button-holder">
                 <a href="/Administration/Dashboard/List" class="btn btn-info text-uppercase">Doctors List</a>
+            </div> -->
+            <div class="submit-button ">
+                <a href="/Administration/Dashboard/List">
+                    <button class="btn btn-common" id="submit" type="submit">Doctors list</button>
+                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                <!-- <a href="/Administration/Dashboard/AddDoctor" class="btn btn-info text-uppercase">Add Doctor</a  -->
+                <div class="clearfix"></div>
+                </a>
             </div>
         </div>
-        
+        <br /> 
         <div>
-            <h2> Add a new hospital -</h2>
-            <div class="button-holder">
+            <h2> Add a new hospital: </h2>
+            <div class="submit-button ">    
+                <a href ="/Administration/Dashboard/AddHospital">
+                    <button class="btn btn-common" id="submit" type="submit">Add Hospital</button>
+                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                <!-- <a href="/Administration/Dashboard/AddDoctor" class="btn btn-info text-uppercase">Add Doctor</a  -->
+                <div class="clearfix"></div>
+            </div> </a>
+            <!-- <div class="button-holder">
                 <a href="/Administration/Dashboard/AddHospital" class="btn btn-info text-uppercase">Add Hospital</a>
-            </div>
-
-            <div class="button-holder">
+              </div>-->
+            <br />
+         <!--  <div class="button-holder">
                 <a href="/Administration/Dashboard/HospitalList" class="btn btn-info text-uppercase">Hospitals List</a>
+               </div>-->
+            <div class="submit-button ">
+                <a href="/Administration/Dashboard/HospitalList">
+                    <button class="btn btn-common" id="submit" type="submit">Hospital list</button>
+                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                <!-- <a href="/Administration/Dashboard/AddDoctor" class="btn btn-info text-uppercase">Add Doctor</a  -->
+                <div class="clearfix"></div>
+                </a>
             </div>
         </div>
     </div>
