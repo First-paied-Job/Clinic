@@ -1,0 +1,35 @@
+﻿﻿@using Clinic.Web.ViewModels.Administration.Dashboard.Clinic;
+
+@model EditClinicViewModel
+
+<div class="row">
+    <div class="jumbotron col-md-12">
+        <div class="bg-contact2">
+            <div class="container-contact2">
+                <div class="wrap-contact2">
+                    <form class="contact2-form validate-form" asp-area="Administration" asp-controller="Dashboard" asp-action="EditClinicPost">
+                        <span class="contact2-form-title">
+                            Edit hospital
+                        </span>
+
+                        <div class="wrap-input2 validate-input" data-validate="Name is required">
+                            <label asp-for="Name" style="color: black;"></label>
+                            <input asp-for="Name" class="input2" value="@Model.Name">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <input asp-for="ClinicId" class="hide" hidden="hidden" value="@Model.ClinicId">
+
+                        <div class="container-contact2-form-btn">
+                            <div class="wrap-contact2-form-btn">
+                                <div class="contact2-form-bgbtn"></div>
+                                <button type="submit" class="contact2-form-btn">EDIT</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

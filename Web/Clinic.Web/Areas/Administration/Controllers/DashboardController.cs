@@ -4,6 +4,7 @@
 
     using Clinic.Services.Data.Contracts;
     using Clinic.Web.ViewModels.Administration.Dashboard;
+    using Clinic.Web.ViewModels.Administration.Dashboard.Clinic;
     using Clinic.Web.ViewModels.Administration.Dashboard.Hospital;
     using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,8 @@
             var viewModel = new IndexViewModel { };
             return this.View(viewModel);
         }
+
+        // Doctors
 
         public IActionResult AddDoctor()
         {
@@ -64,8 +67,10 @@
         {
             await this.administratorService.RemoveDoctorRoleFromUser(userId);
 
-            return this.Redirect("/");
+            return this.Redirect("/Administration/Dashboard/List");
         }
+
+        // Hospitals
 
         public IActionResult AddHospital()
         {
@@ -89,14 +94,14 @@
                 return this.View("AddHospital");
             }
 
-            return this.Redirect("/");
+            return this.Redirect("/Administration/Dashboard/HospitalList");
         }
 
         public async Task<IActionResult> RemoveHospital(string hospitalId)
         {
             await this.administratorService.RemoveHospitalAsync(hospitalId);
 
-            return this.Redirect("/");
+            return this.Redirect("/Administration/Dashboard/HospitalList");
         }
 
         public async Task<IActionResult> HospitalList()
@@ -116,6 +121,62 @@
         public async Task<IActionResult> EditHospitalPost(EditHospitalInputModel input)
         {
             await this.administratorService.EditHospitalAsync(input);
+
+            return this.Redirect("/Administration/Dashboard/HospitalList");
+        }
+
+        // Clinics
+
+        public IActionResult AddClinic(string hospitalId)
+        {
+            this.ViewBag.hospitalId = hospitalId;
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddClinic(ClinicInputModel input)
+        {
+            try
+            {
+                await this.administratorService.AddClinicToHospitalAsync(input);
+            }
+            catch (System.Exception e)
+            {
+                this.ModelState.AddModelError("noClinic", e.Message);
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View("AddClinic");
+            }
+
+            return this.Redirect("/Administration/Dashboard/HospitalList");
+        }
+
+        public async Task<IActionResult> RemoveClinic(string clinicId)
+        {
+            await this.administratorService.RemoveClinicAsync(clinicId);
+
+            return this.Redirect("/Administration/Dashboard/HospitalList");
+        }
+
+        public async Task<IActionResult> ClinicList(string hospitalId)
+        {
+            var viewModel = await this.administratorService.GetClinicsInHospitalAsync(hospitalId);
+            return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> EditClinic(string clinicId)
+        {
+            var viewModel = await this.administratorService.GetClinicEdit(clinicId);
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditClinicPost(EditClinicInputModel input)
+        {
+            await this.administratorService.EditClinicAsync(input);
 
             return this.Redirect("/Administration/Dashboard/HospitalList");
         }
