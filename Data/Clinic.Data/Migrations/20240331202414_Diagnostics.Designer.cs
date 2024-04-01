@@ -4,6 +4,7 @@ using Clinic.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Clinic.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240331202414_Diagnostics")]
+    partial class Diagnostics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -412,8 +415,7 @@ namespace Clinic.Data.Migrations
                 {
                     b.HasOne("Clinic.Data.Models.Hospital.Clinic", "Clinic")
                         .WithMany("Diagnostics")
-                        .HasForeignKey("ClinicId")
-                        .OnDelete(DeleteBehavior.ClientCascade);
+                        .HasForeignKey("ClinicId");
 
                     b.Navigation("Clinic");
                 });

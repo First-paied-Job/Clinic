@@ -1,5 +1,26 @@
-﻿@{
-    this.ViewData["Title"] = "Patient Dashboard";
-}
+﻿﻿@using Clinic.Web.ViewModels.Patient.Dashboard;
 
-<h1>@this.ViewData["Title"]</h1>
+@model ICollection<ClinicPatientView>
+
+﻿<div class="row">
+    <div class="jumbotron col-md-12">
+        @if (Model.Count <= 0)
+        {
+            <div>
+                <p>You are not in any clinics right now.</p>
+            </div>
+        }
+        else
+        {
+            @foreach (var clinic in Model)
+            {
+                <div>
+                    <p>@clinic.Name</p>
+                    <div>
+                        <a href="/Patient/Dashboard/DiagnosticsForPatient?clinicId=@clinic.ClinicId" class="btn forum-go-back-btn text-uppercase">See your diagnostics in @clinic.Name</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

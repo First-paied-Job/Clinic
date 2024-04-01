@@ -18,10 +18,12 @@
     public class AdministratorService : IAdministratorService
     {
         private readonly ApplicationDbContext db;
+        private readonly IDoctorService doctorService;
 
-        public AdministratorService(ApplicationDbContext db)
+        public AdministratorService(ApplicationDbContext db, IDoctorService doctorService)
         {
             this.db = db;
+            this.doctorService = doctorService;
         }
 
         // Doctor
@@ -103,13 +105,7 @@
                 throw new InvalidOperationException($"There is no role with the name \"{GlobalConstants.ClinicDoctortRoleName}\"!");
             }
 
-            var clinic = await this.db.Clincs
-                .Include(c => c.People)
-                .FirstOrDefaultAsync(c => c.ClinicId == user.ClinicId);
-
-            user.ClinicId = null;
-            user.Clinic = null;
-            clinic.People.Remove(user);
+            await this.RemoveDoctorFromClinic(userId);
 
             this.db.UserRoles.Remove(new Microsoft.AspNetCore.Identity.IdentityUserRole<string>()
             {
@@ -160,11 +156,16 @@
 
         public async Task RemoveHospitalAsync(string hospitalId)
         {
-            var hospital = await this.db.Hospitals.Include(h => h.Clincs).ThenInclude(c => c.People).FirstOrDefaultAsync(h => h.HospitalId == hospitalId);
+            var hospital = await this.db.Hospitals.Include(h => h.Clincs).ThenInclude(c => c.People).Include(c => c.Clincs).ThenInclude(c => c.Diagnostics).FirstOrDefaultAsync(h => h.HospitalId == hospitalId);
 
             if (hospital == null)
             {
                 throw new ArgumentException("This hospital does not exist!");
+            }
+
+            foreach (var clinic in hospital.Clincs)
+            {
+                await this.CheckPatients(clinic.ClinicId);
             }
 
             this.db.Hospitals.Remove(hospital);
@@ -263,7 +264,7 @@
 
         public async Task RemoveClinicAsync(string clinicId)
         {
-            var clinic = await this.db.Clincs.Include(c => c.People).FirstOrDefaultAsync(h => h.ClinicId == clinicId);
+            var clinic = await this.db.Clincs.Include(c => c.People).Include(c => c.Diagnostics).FirstOrDefaultAsync(h => h.ClinicId == clinicId);
             if (clinic == null)
             {
                 throw new ArgumentException("This hospital does not exist!");
@@ -272,6 +273,9 @@
             var hospitalEmployer = await this.db.Hospitals.FirstOrDefaultAsync(h => h.HospitalId == clinic.HospitalEmployerId);
 
             hospitalEmployer.Clincs.Remove(clinic);
+
+            await this.CheckPatients(clinic.ClinicId);
+
             this.db.Clincs.Remove(clinic);
             await this.db.SaveChangesAsync();
         }
@@ -370,6 +374,19 @@
             doctor.Clinic = null;
             clinic.People.Remove(doctor);
             await this.db.SaveChangesAsync();
+        }
+
+        public async Task CheckPatients(string clinicId)
+        {
+            var patientClinics = await this.db.PatientClinics.Where(pc => pc.ClinicId == clinicId).ToListAsync();
+
+            this.db.PatientClinics.RemoveRange(patientClinics);
+            await this.db.SaveChangesAsync();
+
+            foreach (var pair in patientClinics)
+            {
+                await this.doctorService.RemovePatientRolesAsync(pair.PatientId);
+            }
         }
     }
 }

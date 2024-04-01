@@ -1,0 +1,18 @@
+﻿﻿@using Clinic.Web.ViewModels.Doctor.Dashboard.Diagnostics;
+
+<main class="mt-3">
+    <h1 class="text-center suls-text-color">Current patients in this clinic</h1>
+    @foreach (DiagnosticViewModel diagnostic in Model)
+    {
+        <div>
+            <p>@diagnostic.Name</p>
+            <p>@diagnostic.Description</p>
+            <div>
+                <a href="/Doctor/Dashboard/RemoveDiagnostic?diagnosticId=@diagnostic.DiagnosticId" class="btn forum-go-back-btn text-uppercase">Remove Diagnostic</a>
+            </div>
+            <div>
+                <a href="/Doctor/Dashboard/EditDiagnostic?diagnosticId=@diagnostic.DiagnosticId" class="btn forum-go-back-btn text-uppercase">Edit Diagnostic</a>
+            </div>
+        </div>
+    }
+</main>

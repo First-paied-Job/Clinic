@@ -30,11 +30,11 @@
 
         public DbSet<Hospital> Hospitals { get; set; }
 
-        public DbSet<Service> Services { get; set; }
-
         public DbSet<Diagnostics> Diagnostics { get; set; }
 
         public DbSet<PatientDiagnostics> PatientDiagnostics { get; set; }
+
+        public DbSet<PatientClinics> PatientClinics { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -97,7 +97,15 @@
                 .HasForeignKey(c => c.ClinicId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
+            builder
+                .Entity<Clinic>()
+                .HasMany(c => c.Diagnostics)
+                .WithOne(c => c.Clinic)
+                .HasForeignKey(c => c.ClinicId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
             builder.Entity<PatientDiagnostics>().HasKey(x => new { x.PatientId, x.DiagnosticsId });
+            builder.Entity<PatientClinics>().HasKey(x => new { x.PatientId, x.ClinicId });
             base.OnModelCreating(builder);
         }
 

@@ -17,6 +17,7 @@ namespace Clinic.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.PatientDiagnostics = new HashSet<PatientDiagnostics>();
+            this.PatientClinics = new HashSet<PatientClinics>();
         }
 
         public string Name { get; set; }
@@ -40,6 +41,8 @@ namespace Clinic.Data.Models
         public virtual Clinic Clinic { get; set; }
 
         public string ClinicId { get; set; }
+
+        public virtual ICollection<PatientClinics> PatientClinics { get; set; }
 
         public virtual ICollection<PatientDiagnostics> PatientDiagnostics { get; set; }
     }

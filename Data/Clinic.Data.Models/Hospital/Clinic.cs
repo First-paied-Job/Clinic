@@ -8,9 +8,9 @@
         public Clinic()
         {
             this.ClinicId = Guid.NewGuid().ToString();
-            this.Services = new HashSet<Service>();
             this.People = new HashSet<ApplicationUser>();
             this.Diagnostics = new HashSet<Diagnostics>();
+            this.PatientClinics = new HashSet<PatientClinics>();
         }
 
         public string ClinicId { get; set; }
@@ -19,9 +19,9 @@
 
         public virtual ICollection<ApplicationUser> People { get; set; }
 
-        public virtual ICollection<Service> Services { get; set; }
-
         public virtual ICollection<Diagnostics> Diagnostics { get; set; }
+
+        public virtual ICollection<PatientClinics> PatientClinics { get; set; }
 
         public virtual Hospital HospitalEmployer { get; set; }
 

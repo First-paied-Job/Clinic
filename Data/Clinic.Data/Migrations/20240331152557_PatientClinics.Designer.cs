@@ -4,6 +4,7 @@ using Clinic.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Clinic.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240331152557_PatientClinics")]
+    partial class PatientClinics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,6 +238,21 @@ namespace Clinic.Data.Migrations
                     b.ToTable("PatientDiagnostics");
                 });
 
+            modelBuilder.Entity("Clinic.Data.Models.Hospital.Service", b =>
+                {
+                    b.Property<string>("ServiceId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ClinicId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ServiceId");
+
+                    b.HasIndex("ClinicId");
+
+                    b.ToTable("Services");
+                });
+
             modelBuilder.Entity("Clinic.Data.Models.Setting", b =>
                 {
                     b.Property<int>("Id")
@@ -412,8 +430,7 @@ namespace Clinic.Data.Migrations
                 {
                     b.HasOne("Clinic.Data.Models.Hospital.Clinic", "Clinic")
                         .WithMany("Diagnostics")
-                        .HasForeignKey("ClinicId")
-                        .OnDelete(DeleteBehavior.ClientCascade);
+                        .HasForeignKey("ClinicId");
 
                     b.Navigation("Clinic");
                 });
@@ -421,7 +438,7 @@ namespace Clinic.Data.Migrations
             modelBuilder.Entity("Clinic.Data.Models.Hospital.PatientClinics", b =>
                 {
                     b.HasOne("Clinic.Data.Models.Hospital.Clinic", "Clinic")
-                        .WithMany("PatientClinics")
+                        .WithMany()
                         .HasForeignKey("ClinicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -454,6 +471,15 @@ namespace Clinic.Data.Migrations
                     b.Navigation("Diagnostics");
 
                     b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("Clinic.Data.Models.Hospital.Service", b =>
+                {
+                    b.HasOne("Clinic.Data.Models.Hospital.Clinic", "Clinic")
+                        .WithMany("Services")
+                        .HasForeignKey("ClinicId");
+
+                    b.Navigation("Clinic");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -536,9 +562,9 @@ namespace Clinic.Data.Migrations
                 {
                     b.Navigation("Diagnostics");
 
-                    b.Navigation("PatientClinics");
-
                     b.Navigation("People");
+
+                    b.Navigation("Services");
                 });
 
             modelBuilder.Entity("Clinic.Data.Models.Hospital.Diagnostics", b =>

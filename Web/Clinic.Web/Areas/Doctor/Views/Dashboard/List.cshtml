@@ -1,14 +1,38 @@
 ﻿﻿@using Clinic.Web.ViewModels.Doctor.Dashboard;
+﻿@using Clinic.Web.ViewModels.Doctor.Dashboard.Diagnostics;
+
+@model ICollection<PatientViewModel>
 
 <main class="mt-3">
-    <h1 class="text-center suls-text-color">Current patients</h1>
-    @foreach (PatientViewModel patient in Model)
+    <h1 class="text-center suls-text-color">Current patients in this clinic</h1>
+    @if (Model.Count <= 0)
     {
         <div>
-            <p>@patient.Email - @patient.Name</p>
-            <div>
-                <a href="/Doctor/Dashboard/RemovePatient?userId=@patient.PatientId" class="btn forum-go-back-btn text-uppercase">Remove Patient's role</a>
-            </div>
+            <p>There are no patients in this clinic currently!</p>
         </div>
     }
+    else
+    {
+        @foreach (PatientViewModel patient in Model)
+        {
+            <div>
+                <p>@patient.Email</p>
+                <div>
+                    @Html.ActionLink("Remove patient from clinic", "RemovePatient", "Dashboard", new PatientRemoveModel { ClinicId = patient.ClinicId, PatientId = patient.PatientId })
+                </div>
+                <div class="button-holder">
+                    @Html.ActionLink("Patients's diagnostics", "PatientDiagnosticsList", "Dashboard", new AddDiagnosticToPatientView { ClinicId = patient.ClinicId, PatientId = patient.PatientId })
+                </div>
+            </div>
+        }
+    }
+
+    <script type="text/javascript">
+        $(function () {
+            $("#submit").click(function () {
+                document.forms[0].submit();
+                return false;
+            });
+        });
+    </script>
 </main>

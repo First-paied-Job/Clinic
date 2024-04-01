@@ -13,7 +13,7 @@
 <div class="row">
     <div class="jumbotron col-md-12">
         <div class="heading-container bottom-buffer-md">
-            <h1>Here you can add a Doctor!</h1>
+            <h1>Here you can add a patient!</h1>
         </div>
 
         <form class="mx-auto half-width col-5" method="post" asp-controller="Dashboard" asp-action="AddPatient">
@@ -25,9 +25,18 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
+            @if (ViewBag.clinicId != null)
+            {
+                <input asp-for="ClinicId" class="hide" hidden="hidden" value="@ViewBag.clinicId">
+            }
+            else
+            {
+                <input asp-for="ClinicId" class="hide" hidden="hidden" value="@Model.ClinicId">
+            }
+
             <div class="top-border-line primary-separator"></div>
 
-            <button type="submit" class="btn forum-add-bg-color">Add</button>
+            <button type="submit" class="btn forum-add-bg-color">Add patient</button>
         </form>
     </div>
 </div>

@@ -2,6 +2,8 @@
 {
     public class PatientViewModel
     {
+        public string ClinicId { get; set; }
+
         public string PatientId { get; set; }
 
         public string Name { get; set; }
