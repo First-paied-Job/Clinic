@@ -1,0 +1,29 @@
+﻿@model Clinic.Web.ViewModels.Administration.Statistics.IndexViewModel
+@{
+    this.ViewData["Title"] = "Statistics panel";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+﻿<div class="row">
+    <div class="jumbotron col-md-12">
+        <div class="heading-container bottom-buffer-md">
+            <h1>This is the statistics panel for MediLab!</h1>
+        </div>
+        <div class="submit-button ">
+            <a href="/Administration/Statistics/Clinics">
+                <button class="btn btn-common" id="submit" type="submit">See all clinics</button>
+                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                <div class="clearfix"></div>
+            </a>
+        </div>
+
+        <div class="submit-button ">
+            <a href="/Administration/Statistics/Diagnostics">
+                <button class="btn btn-common" id="submit" type="submit">See all diagnostics</button>
+                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                <div class="clearfix"></div>
+            </a>
+        </div>
+    </div>
+</div>
+

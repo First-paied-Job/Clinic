@@ -1,0 +1,18 @@
+﻿﻿@using Clinic.Web.ViewModels.Administration.Statistics;
+
+<main class="mt-3">
+    <h1 class="text-center suls-text-color">Current clinics</h1>
+    @foreach (StatisticClinicViewModel clinic in Model)
+    {
+        <div>
+            <h2>@clinic.HospitalName</h2>
+            <p>@clinic.Name</p>
+            <div>
+                <a href="/Administration/Statistics/GetDoctorsInClinic?clinicId=@clinic.ClinicId" class="btn forum-go-back-btn text-uppercase">See all doctors in this clinic</a>
+            </div>
+            <div>
+                <a href="/Administration/Statistics/GetPatientsInClinic?clinicId=@clinic.ClinicId" class="btn forum-go-back-btn text-uppercase">See all patients in this clinic</a>
+            </div>
+        </div>
+    }
+</main>

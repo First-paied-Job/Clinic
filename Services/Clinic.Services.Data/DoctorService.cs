@@ -329,7 +329,7 @@
 
             var avaiableDiagnostics = await this.db.Diagnostics
                 .Include(d => d.PatientDiagnostics)
-                .Where(d => d.PatientDiagnostics.FirstOrDefault(pd => pd.PatientId == input.PatientId) == null)
+                .Where(d => d.PatientDiagnostics.FirstOrDefault(pd => pd.PatientId == input.PatientId) == null && d.ClinicId == input.ClinicId)
                 .Select(d => new DiagnosticViewModel
                 {
                     Description = d.Description,

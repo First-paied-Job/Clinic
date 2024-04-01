@@ -1,0 +1,11 @@
+﻿﻿@using Clinic.Web.ViewModels.Administration.Statistics;
+
+<main class="mt-3">
+    <h1 class="text-center suls-text-color">Current patients</h1>
+    @foreach (StatisticPatientViewModel patient in Model)
+    {
+        <div>
+            <h2>@patient.PatientEmail</h2>
+        </div>
+    }
+</main>

@@ -1,0 +1,20 @@
+﻿﻿@using Clinic.Web.ViewModels.Administration.Statistics;
+
+<main class="mt-3">
+    <h1 class="text-center suls-text-color">Current diagnostics</h1>
+    @foreach (StatisticDiagnosticViewModel diagnostic in Model)
+    {
+        <div>
+            <h2>@diagnostic.Name</h2>
+            <p>@diagnostic.Description</p>
+            <p>Prescribed by @diagnostic.CreatorName</p>
+            <div>
+                <a href="/Administration/Statistics/DiagnosticsFromDoctor?doctorId=@diagnostic.CreatorId" class="btn forum-go-back-btn text-uppercase">See all diagnostics from @diagnostic.CreatorName</a>
+            </div>
+        </div>
+    }
+
+    <div>
+        <a href="/Administration/Statistics/DiagnosticsPatientList" class="btn forum-go-back-btn text-uppercase">See diagnostics for specific patient</a>
+    </div>
+</main>

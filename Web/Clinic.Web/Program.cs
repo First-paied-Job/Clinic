@@ -69,6 +69,7 @@
             services.AddTransient<IAdministratorService, AdministratorService>();
             services.AddTransient<IDoctorService, DoctorService>();
             services.AddTransient<IPatientService, PatientService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
         }
 
         private static void Configure(WebApplication app)
