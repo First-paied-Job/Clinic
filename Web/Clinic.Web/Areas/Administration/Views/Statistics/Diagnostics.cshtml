@@ -8,13 +8,21 @@
             <h2>@diagnostic.Name</h2>
             <p>@diagnostic.Description</p>
             <p>Prescribed by @diagnostic.CreatorName</p>
-            <div>
-                <a href="/Administration/Statistics/DiagnosticsFromDoctor?doctorId=@diagnostic.CreatorId" class="btn forum-go-back-btn text-uppercase">See all diagnostics from @diagnostic.CreatorName</a>
+            <div class="submit-button ">
+                <a href="/Administration/Statistics/DiagnosticsFromDoctor?doctorId=@diagnostic.CreatorId">
+                    <button class="btn btn-common" id="submit" type="submit">See all diagnostics from @diagnostic.CreatorName</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </a>
             </div>
         </div>
     }
 
-    <div>
-        <a href="/Administration/Statistics/DiagnosticsPatientList" class="btn forum-go-back-btn text-uppercase">See diagnostics for specific patient</a>
+    <div class="submit-button ">
+        <a href="/Administration/Statistics/DiagnosticsPatientList">
+            <button class="btn btn-common" id="submit" type="submit">See diagnostics for specific patient</button>
+            <div id="msgSubmit" class="h3 text-center hidden"></div>
+            <div class="clearfix"></div>
+        </a>
     </div>
 </main>

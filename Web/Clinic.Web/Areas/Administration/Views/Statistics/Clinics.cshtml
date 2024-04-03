@@ -7,11 +7,19 @@
         <div>
             <h2>@clinic.HospitalName</h2>
             <p>@clinic.Name</p>
-            <div>
-                <a href="/Administration/Statistics/GetDoctorsInClinic?clinicId=@clinic.ClinicId" class="btn forum-go-back-btn text-uppercase">See all doctors in this clinic</a>
+            <div class="submit-button ">
+                <a href="/Administration/Statistics/GetDoctorsInClinic?clinicId=@clinic.ClinicId">
+                    <button class="btn btn-common" id="submit" type="submit">See all doctors in this clinics</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </a>
             </div>
-            <div>
-                <a href="/Administration/Statistics/GetPatientsInClinic?clinicId=@clinic.ClinicId" class="btn forum-go-back-btn text-uppercase">See all patients in this clinic</a>
+            <div class="submit-button ">
+                <a href="/Administration/Statistics/GetPatientsInClinic?clinicId=@clinic.ClinicId">
+                    <button class="btn btn-common" id="submit" type="submit">See all patients in this clinic</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </a>
             </div>
         </div>
     }

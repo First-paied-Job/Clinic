@@ -6,9 +6,14 @@
     {
         <div>
             <p>@doctor.Email - @doctor.Name</p>
-            <div>
-                <a href="/Administration/Dashboard/RemoveDoctor?userId=@doctor.DoctorId" class="btn forum-go-back-btn text-uppercase">Remove Doctor's role</a>
+            <div class="submit-button ">
+                <a href="/Administration/Dashboard/RemoveDoctor?userId=@doctor.DoctorId">
+                    <button class="btn btn-common" id="submit" type="submit">Remove Doctor's role</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </a>
             </div>
+
         </div>
     }
 </main>

@@ -7,11 +7,19 @@
         <div>
             <p>@diagnostic.Name</p>
             <p>@diagnostic.Description</p>
-            <div>
-                <a href="/Doctor/Dashboard/RemoveDiagnostic?diagnosticId=@diagnostic.DiagnosticId" class="btn forum-go-back-btn text-uppercase">Remove Diagnostic</a>
+            <div class="submit-button ">
+                <a href="/Doctor/Dashboard/RemoveDiagnostic?diagnosticId=@diagnostic.DiagnosticId">
+                    <button class="btn btn-common" id="submit" type="submit">Remove Diagnostic</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </a>
             </div>
-            <div>
-                <a href="/Doctor/Dashboard/EditDiagnostic?diagnosticId=@diagnostic.DiagnosticId" class="btn forum-go-back-btn text-uppercase">Edit Diagnostic</a>
+            <div class="submit-button ">
+                <a href="/Doctor/Dashboard/EditDiagnostic?diagnosticId=@diagnostic.DiagnosticId">
+                    <button class="btn btn-common" id="submit" type="submit">Edit Diagnostic</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </a>
             </div>
         </div>
     }

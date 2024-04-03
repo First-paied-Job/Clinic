@@ -105,7 +105,20 @@
                 throw new InvalidOperationException($"There is no role with the name \"{GlobalConstants.ClinicDoctortRoleName}\"!");
             }
 
+<<<<<<< Updated upstream
             await this.RemoveDoctorFromClinic(userId);
+=======
+            var clinic = await this.db.Clincs
+                .Include(c => c.People)
+                .FirstOrDefaultAsync(c => c.ClinicId == user.ClinicId);
+
+            if (clinic != null)
+            {
+                user.ClinicId = null;
+                user.Clinic = null;
+                clinic.People.Remove(user);
+            }
+>>>>>>> Stashed changes
 
             this.db.UserRoles.Remove(new Microsoft.AspNetCore.Identity.IdentityUserRole<string>()
             {
