@@ -11,21 +11,35 @@
             </div>
 
             <h2> Add a new patient -</h2>
-            <div class="button-holder">
-                <a href="/Doctor/Dashboard/AddPatient?clinicId=@Model.ClinicId" class="btn btn-info text-uppercase">Add Patient</a>
+            <div class="submit-button ">
+                <a href="/Doctor/Dashboard/AddPatient?clinicId=@Model.ClinicId">
+                    <button class="btn btn-common" id="submit" type="submit">Add Patient</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </a>
             </div>
 
-            <div class="button-holder">
-                <a href="/Doctor/Dashboard/List?clinicId=@Model.ClinicId" class="btn btn-info text-uppercase">Patients List</a>
+            <div class="submit-button ">
+                <a href="/Doctor/Dashboard/List?clinicId=@Model.ClinicId">
+                    <button class="btn btn-common" id="submit" type="submit">Patients List</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </a>
             </div>
-
             <h2> Add a new diagnostic to @Model.ClinicName -</h2>
-            <div class="button-holder">
-                <a href="/Doctor/Dashboard/AddDiagnosticToClinic?clinicId=@Model.ClinicId" class="btn btn-info text-uppercase">Add Diagnostic</a>
+            <div class="submit-button ">
+                <a href="/Doctor/Dashboard/AddDiagnosticToClinic?clinicId=@Model.ClinicId">
+                    <button class="btn btn-common" id="submit" type="submit">Add Diagnostic</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </a>
             </div>
-
-            <div class="button-holder">
-                <a href="/Doctor/Dashboard/DiagnosticsList?clinicId=@Model.ClinicId" class="btn btn-info text-uppercase">Diagnostics List</a>
+            <div class="submit-button ">
+                <a href="/Doctor/Dashboard/DiagnosticsList?clinicId=@Model.ClinicId">
+                    <button class="btn btn-common" id="submit" type="submit">Diagnostics List</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </a>
             </div>
         }
         else

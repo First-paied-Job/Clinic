@@ -16,8 +16,12 @@
             {
                 <div>
                     <p>@clinic.Name</p>
-                    <div>
-                        <a href="/Patient/Dashboard/DiagnosticsForPatient?clinicId=@clinic.ClinicId" class="btn forum-go-back-btn text-uppercase">See your diagnostics in @clinic.Name</a>
+                    <div class="submit-button ">
+                        <a href="/Patient/Dashboard/DiagnosticsForPatient?clinicId=@clinic.ClinicId">
+                            <button class="btn btn-common" id="submit" type="submit">See your diagnostics in @clinic.Name</button>
+                            <div id="msgSubmit" class="h3 text-center hidden"></div>
+                            <div class="clearfix"></div>
+                        </a>
                     </div>
                 </div>
             }
